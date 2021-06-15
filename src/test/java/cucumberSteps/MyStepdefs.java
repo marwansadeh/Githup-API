@@ -1,10 +1,13 @@
 package cucumberSteps;
 
 import common.APIPage;
+import common.Constant;
 import common.PropertyReader;
+import common.StateHelper;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.*;
+import org.junit.Assert;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,4 +35,8 @@ public class MyStepdefs {
         APIPage.get(host,params,scenario);
     }
 
+    @Then("^Verify that the response statusCode is (\\d+)\\.$")
+    public void verifyThatTheResponseStatusCodeIs(int statusCode) {
+        Assert.assertEquals(statusCode, StateHelper.getStepState(Constant.STATUSCODE));
+    }
 }

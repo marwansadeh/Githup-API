@@ -32,6 +32,7 @@ public class APIPage {
                 .get(url).then().extract().response();
         System.out.println("\n[Service Response-status]: " + last_response.statusCode());
         System.out.println("\n[Service Response-Body]: " + last_response.asString());
+        StateHelper.setStepState(Constant.STATUSCODE,last_response.statusCode());
         JSONArray jsonResponse = new JSONArray(last_response.asString());
         scenario.write(url + parameters);
         scenario.write(jsonResponse.toString());
