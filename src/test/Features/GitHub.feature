@@ -7,23 +7,29 @@ Feature: Github API
 
     @RegressionTest @Positive
     Examples:
-      | keys                           | values                            | statusCode |
-      | description                    | java                              | 200        |
-      | location                       | Remote                            | 200        |
-      | lat,long                       | 37.3229978,-122.0321823           | 200        |
-      | full_time                      | true                              | 200        |
-      | search                         | node                              | 200        |
-      | description,location           | java,Remote                       | 200        |
-      | description,lat,long           | java,37.3229978,-122.0321823      | 200        |
-      | description,full_time          | java,true                         | 200        |
-      | description,search             | java,node                         | 200        |
-      | description,location,full_time | java,Remote,true                  | 200        |
-      | description,location,search    | java,Remote,node                  | 200        |
-      | description,lat,long,full_time | java,37.3229978,-122.0321823,true | 200        |
-      | description,lat,long,search    | java,37.3229978,-122.0321823,node | 200        |
-      | description,full_time,search   | java,true,node                    | 200        |
-      | description,full_time,search   | java,true,node                    | 200        |
-      | description,full_time,search   | java,true,node                    | 200        |
+      | keys                                  | values                                 | statusCode |
+      | description                           | java                                   | 200        |
+      | location                              | Remote                                 | 200        |
+      | lat,long                              | 37.3229978,-122.0321823                | 200        |
+      | full_time                             | true                                   | 200        |
+      | search                                | node                                   | 200        |
+      | description,location                  | java,Remote                            | 200        |
+      | description,lat,long                  | java,37.3229978,-122.0321823           | 200        |
+      | description,full_time                 | java,true                              | 200        |
+      | description,search                    | java,node                              | 200        |
+      | description,location,full_time        | java,Remote,true                       | 200        |
+      | description,location,search           | java,Remote,node                       | 200        |
+      | description,location,full_time,search | java,Remote,true,node                  | 200        |
+      | description,lat,long,full_time        | java,37.3229978,-122.0321823,true      | 200        |
+      | description,lat,long,search           | java,37.3229978,-122.0321823,node      | 200        |
+      | description,lat,long,full_time,search | java,37.3229978,-122.0321823,true,node | 200        |
+      | description,full_time,search          | java,true,node                         | 200        |
+      | location,full_time                    | Remote,true                            | 200        |
+      | location,search                       | Remote,node                            | 200        |
+      | lat,long,full_time                    | 37.3229978,-122.0321823,true           | 200        |
+      | lat,long,search                       | 37.3229978,-122.0321823,node           | 200        |
+      | full_time,search                      | true,node                              | 200        |
+      |                                       |                                        | 200        |
 
     @RegressionTest @Negative
     Examples:
@@ -38,7 +44,6 @@ Feature: Github API
       | description,location,lat,long                  | java,Remote,37.3229978,-122.0321823           | 200        |
       | full_time,search,lat                           | java,true,node,37.3229978                     | 200        |
       | full_time,search,long                          | java,true,node,-122.0321823                   | 200        |
-      |                                                |                                               | 200        |
 
     @SmokeTest
     Examples:
