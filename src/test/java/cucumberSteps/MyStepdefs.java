@@ -4,9 +4,9 @@ import common.APIPage;
 import common.Constant;
 import common.PropertyReader;
 import common.StateHelper;
-import cucumber.api.Scenario;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.*;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class MyStepdefs {
         this.scenario = scenario;
     }
 
-    @When("Call GET API with (.*) key and (.*) value\\.")
+    @Given("^Call GET API with (.*) key and (.*) value\\.$")
     public void test(List<String> key, List<String> value) throws Throwable {
         //Put the list of keys and list of values on Map
         Map<String,String> params = new HashMap<>();
@@ -38,5 +38,15 @@ public class MyStepdefs {
     @Then("^Verify that the response statusCode is (\\d+)\\.$")
     public void verifyThatTheResponseStatusCodeIs(int statusCode) {
         Assert.assertEquals(statusCode, StateHelper.getStepState(Constant.STATUSCODE));
+        APIPage.lenientAssert("");
+        APIPage.strictAssert("{t:y;");
     }
+
+//    @Given("Call GET API with <keys> key and <values> value.")
+//    public void callGETAPIWithKeysKeyAndValuesValue() {
+//    }
+
+//    @Given("Call GET API with {string} key and {string} value.")
+//    public void callGETAPIWithKeyAndValue(String arg0, String arg1) {
+//    }
 }

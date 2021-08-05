@@ -1,6 +1,6 @@
 package common;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONArray;
@@ -24,18 +24,19 @@ public class APIPage {
      *
      * @return JSONObject response
      */
-    public static JSONArray get(String url, Map<String,String> parameters,Scenario scenario) {
+    public static JSONArray get(String url, Map<String,String> parameters, Scenario scenario) {
         System.out.println("\n[Service Request-URL]: " + url + parameters);
         last_response = client.given()
                 .header(Constant.CONTENT_TYPE, "application/json")
                 .queryParams(parameters)
+
                 .get(url).then().extract().response();
         System.out.println("\n[Service Response-status]: " + last_response.statusCode());
         System.out.println("\n[Service Response-Body]: " + last_response.asString());
         StateHelper.setStepState(Constant.STATUSCODE,last_response.statusCode());
         JSONArray jsonResponse = new JSONArray(last_response.asString());
-        scenario.write(url + parameters);
-        scenario.write(jsonResponse.toString());
+        scenario.log(url + parameters);
+        scenario.log(jsonResponse.toString());
         return jsonResponse;
     }
 
